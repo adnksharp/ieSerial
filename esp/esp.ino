@@ -1,29 +1,28 @@
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
 
-Adafruit_SSD1306 oled(128, 64, &Wire, -1);
+#include "password.hpp"
 
-void setup ()
+void setup()
 {
     Serial.begin(115200);
-    oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-    oled.clearDisplay();
-    oled.setTextColor(WHITE);
-    oled.setCursor(0, 0);
-    oled.println("<h1>\n  aK#\n</h1>");
-    oled.display();
+
+    WiFi.begin(ssid(), passw());
+    while (WiFi.status() != WL_CONNECTED)
+        delay(5000);
+        
+    Serial.println("Red: " + ssid());
+    Serial.println("IP: " + WiFi.localIP().toString());
+    pinMode(2, OUTPUT);
 }
 
-void loop ()
+void loop()
 {
     if (Serial.available())
     {
-        Serial.println("Dato recibido");
-        oled.clearDisplay();
-        oled.setTextColor(WHITE);
-        oled.setCursor(0, 0);
-        oled.println(Serial.readString());
-        oled.display();
+        Serial.println("dato recibido");
+        digitalWrite(2, LOW);
     }
+    digitalWrite(2, HIGH);
 }
