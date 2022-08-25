@@ -9,6 +9,8 @@ Comunicación entre microcontroladores mediante puerto serie.
 - Placa de desarrollo Arduino MEGA 2560.
 - Diplay OLED.
 - [Arduino IDE](https://www.arduino.cc/en/software) o [Arduino CLI](https://arduino.github.io/arduino-cli/0.23/installation/).
+- Librerías `Wire`, `Adafruit_GFX` y `Adafruit_SSD1306` para el Arduino Mega.
+- Librerías `ESP8266WiFi`, `WiFiClient` y `ESP8266WebServer` para el nodeMCU ESP8266.
 
 ## Funcionamiento
 ### `esp`
